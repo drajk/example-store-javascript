@@ -1,64 +1,121 @@
-import Head from "next/head";
+import { useEffect } from "react";
+import { Button, Card, Header, Image } from "semantic-ui-react";
 
-export default function Home() {
+import { Layout } from "../components";
+import loadLatitudeContent from "../utils/loadLatitudeContent";
+
+const Cart = () => (
+  <Card fluid>
+    <Card.Content>
+      <Card.Header>Order Summary</Card.Header>
+      <Card.Meta>1 item</Card.Meta>
+    </Card.Content>
+    <Card.Content>
+      <Header as="h5" floated="left">
+        1 x Blue Tuxedo
+      </Header>
+      <Header as="h5" floated="right">
+        $640.00
+      </Header>
+      <Card.Description>Color - Blue</Card.Description>
+      <Card.Description>Size - L</Card.Description>
+    </Card.Content>
+    <Card.Content>
+      <Header as="h5" floated="left">
+        Shipping
+      </Header>
+      <Header as="h5" floated="right">
+        $13.00
+      </Header>
+    </Card.Content>
+
+    <Card.Content>
+      <Header as="h3" floated="left">
+        Total
+        <Header.Subheader>Including $58.18 in taxes</Header.Subheader>
+      </Header>
+      <Header as="h3" floated="right">
+        $653.00
+      </Header>
+    </Card.Content>
+  </Card>
+);
+
+const Purchase = () => (
+  <>
+    <Card.Group>
+      <Card fluid>
+        <Card.Content>
+          <Card.Header>Customer</Card.Header>
+          <Card.Description>Fake Doe</Card.Description>
+          <Card.Description>fake.doe@email.com</Card.Description>
+          <Card.Description>+61 400 000 000</Card.Description>
+        </Card.Content>
+      </Card>
+
+      <Card fluid>
+        <Card.Content>
+          <Card.Header>Shipping</Card.Header>
+          <Card.Meta>
+            Express shipping <strong>13.00</strong>
+          </Card.Meta>
+          <Card.Description>
+            100 Spencer Street, Melbourne, VIC, 3000
+          </Card.Description>
+        </Card.Content>
+      </Card>
+
+      <Card fluid>
+        <Card.Content>
+          <Card.Header>Billing</Card.Header>
+          <Card.Description>
+            200 Bridge Road, Richmond, VIC, 3121
+          </Card.Description>
+        </Card.Content>
+      </Card>
+    </Card.Group>
+
+    <Header>Payment</Header>
+
+    <Card fluid>
+      <Card.Content>
+        <Card.Header>
+          Latitude interest free
+          <Image
+            src="https://assets.latitudefinancial.com/merchant-services/latitude/icon/latitude-interest-free.svg"
+            size="small"
+            floated="right"
+          />
+        </Card.Header>
+        <Card.Description>
+          <div id="latitude-payment--main"></div>
+          <div id="latitude-payment--footer"></div>
+        </Card.Description>
+      </Card.Content>
+    </Card>
+
+    <Button secondary size="big">
+      Complete order
+    </Button>
+  </>
+);
+
+const Home = () => {
+  useEffect(() => {
+    loadLatitudeContent(() => console.log("latitude content loaded."));
+  });
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <Layout>
+      <Layout.Summary>
+        <Cart />
+      </Layout.Summary>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{" "}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
+      <Layout.Content>
+        <Purchase />
+      </Layout.Content>
+    </Layout>
   );
-}
+};
+
+export default Home;

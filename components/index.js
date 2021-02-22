@@ -1,2 +1,3 @@
-export * from "./Layout";
-export * from "./theme";
+import Layout from "./Layout";
+
+export { Layout };
