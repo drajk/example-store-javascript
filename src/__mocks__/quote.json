@@ -1,0 +1,28 @@
+{
+  "id": "some-unique-identifier",
+  "customer": {
+    "firstName": "Fake",
+    "lastName": "Doe",
+    "email": "fake.doe@email.com",
+    "mobile": "+61 400 000 000"
+  },
+  "lineItems": [
+    {
+      "quantity": 1,
+      "title": "Blue Tuxedo",
+      "price": 640.2,
+      "color": "Blue",
+      "size": "L"
+    }
+  ],
+  "shipping": {
+    "type": "express",
+    "description": "Express shipping",
+    "amount": 13.95,
+    "address": "100 Spencer Street, Melbourne, VIC, 3000"
+  },
+  "billing": {
+    "address": "200 Bridge Road, Richmond, VIC, 3121"
+  },
+  "total": 654.15
+}

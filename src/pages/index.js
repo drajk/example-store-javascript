@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button, Header } from "semantic-ui-react";
 
 import { Customer, Cart, Layout } from "../components";
 import { LatitudeInterestFree } from "../payment";
-import { getQuote } from "../services/quote";
+
+import mockQuote from "../__mocks__/quote.json";
 
 const CompleteOrder = ({ quoteId }) => {
-  const [id, setId] = useState(quoteId);
+  const [id] = useState(quoteId);
 
   return (
     <form action="/api/checkout" method="post">
@@ -20,12 +21,8 @@ const CompleteOrder = ({ quoteId }) => {
 };
 
 const Home = () => {
-  const [quote, setQuote] = useState({});
-
-  useEffect(() => {
-    const mockQuote = getQuote();
-    setQuote(mockQuote);
-  }, []);
+  // Currently uses a mock, ideally this method gets quote from your backend apis
+  const quote = mockQuote;
 
   return (
     <Layout>
