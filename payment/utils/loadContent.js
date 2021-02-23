@@ -1,12 +1,12 @@
-const MERCHANT_ID = "someMerchantID";
-const SCRIPT_IDENTIFIER = "latitudeCheckoutScript";
-const SRC =
-  "https://develop.checkout.dev.merchant-services-np.lfscnp.com/assets/content.js?platform=magento2";
+import {
+  MERCHANT_ID,
+  SCRIPT_IDENTIFIER,
+  CONTENT_SRC,
+  PAYMENT_CONTAINER_MAIN,
+  PAYMENT_CONTAINER_FOOTER,
+} from "./constants";
 
-export const PAYMENT_CONTAINER_MAIN = "latitude-payment--main";
-export const PAYMENT_CONTAINER_FOOTER = "latitude-payment--footer";
-
-const loadLatitudeContent = (callback) => {
+const loadContent = (callback) => {
   const existingScript = document.getElementById(SCRIPT_IDENTIFIER);
 
   window.LatitudeCheckout = {
@@ -24,7 +24,7 @@ const loadLatitudeContent = (callback) => {
     const script = document.createElement("script");
 
     script.async = true;
-    script.src = SRC;
+    script.src = CONTENT_SRC;
     script.id = SCRIPT_IDENTIFIER;
 
     document.body.appendChild(script);
@@ -37,4 +37,4 @@ const loadLatitudeContent = (callback) => {
   if (existingScript && callback) callback();
 };
 
-export default loadLatitudeContent;
+export default loadContent;
