@@ -8,7 +8,7 @@ import { PAYMENT_TYPE } from "../core/constants";
 
 import mockQuote from "../__mocks__/quote.json";
 
-const CompleteOrder = ({ quoteId }) => {
+const PayNow = ({ quoteId }) => {
   const [loading, setLoading] = useState(false);
 
   const handleClick = async () => {
@@ -54,7 +54,7 @@ const Home = () => {
 
         <LatitudeInterestFree />
 
-        <CompleteOrder quoteId={quote?.id} />
+        <PayNow quoteId={quote?.id} />
       </Layout.Content>
     </Layout>
   );
