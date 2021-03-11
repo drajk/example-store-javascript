@@ -28,7 +28,6 @@ const CompletePage = () => {
   useEffect(() => {
     const completeOrder = async () => {
       if (!merchantReference || !transactionReference || !gatewayReference) {
-        setMessage(MESSAGES.INVALID_REQUEST);
         return;
       }
 
