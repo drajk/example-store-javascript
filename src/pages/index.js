@@ -1,22 +1,31 @@
 import { useState } from "react";
 import { Button, Header } from "semantic-ui-react";
+import axios from "axios";
 
 import { Customer, Cart, Layout } from "../components";
 import { LatitudeInterestFree } from "../payment";
+import { PAYMENT_TYPE } from "../core/constants";
 
 import mockQuote from "../__mocks__/quote.json";
 
 const CompleteOrder = ({ quoteId }) => {
-  const [id] = useState(quoteId);
+  const [loading, setLoading] = useState(false);
+
+  const handleClick = async () => {
+    setLoading(true);
+
+    const { data } = await axios.post("/api/checkout", {
+      quoteId,
+      paymentType: PAYMENT_TYPE.LATITUDE_INTEREST_FREE,
+    });
+
+    window.location.href = data?.redirectUrl;
+  };
 
   return (
-    <form action="/api/checkout" method="post">
-      <input type="hidden" name="quoteId" value={id} />
-
-      <Button secondary size="big" type="submit">
-        Complete order
-      </Button>
-    </form>
+    <Button secondary size="big" loading={loading} onClick={handleClick}>
+      Complete order
+    </Button>
   );
 };
 

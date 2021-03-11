@@ -5,16 +5,16 @@ const Cart = ({ lineItems = [], shippingAmount, totalAmount }) => {
     <Card fluid>
       <Card.Content>
         <Card.Header>Order Summary</Card.Header>
-        <Card.Meta>{lineItems.length} item(s)</Card.Meta>
+        <Card.Meta>{lineItems.length} product(s)</Card.Meta>
       </Card.Content>
 
-      {lineItems.map(({ quantity, title, price, color, size }) => (
+      {lineItems.map(({ quantity, title, totalPrice, color, size }) => (
         <Card.Content key={title}>
           <Header as="h5" floated="left">
             {quantity} x {title}
           </Header>
           <Header as="h5" floated="right">
-            ${price}
+            ${totalPrice}
           </Header>
           <Card.Description>Color - {color}</Card.Description>
           <Card.Description>Size - {size}</Card.Description>
