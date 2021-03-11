@@ -59,20 +59,21 @@ const CompletePage = () => {
         {!message && <Loader active inline="centered" />}
 
         {message && (
-          <Message>
-            <Message.Content>{message}</Message.Content>
-          </Message>
+          <>
+            <Message>
+              <Message.Content>{message}</Message.Content>
+            </Message>
+            <Button
+              basic
+              color="blue"
+              onClick={() => {
+                window.location.href = "/cart";
+              }}
+            >
+              Back to cart.
+            </Button>
+          </>
         )}
-
-        <Button
-          basic
-          color="blue"
-          onClick={() => {
-            window.location.href = "/cart";
-          }}
-        >
-          Back to cart.
-        </Button>
       </Container>
     </Layout>
   );
