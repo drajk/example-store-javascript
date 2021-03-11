@@ -7,7 +7,7 @@ const handlePost = async (req, res) => {
 
   if (!merchantReference || !transactionReference || !gatewayReference) {
     res.status(400).end("Missing required params");
-    break;
+    return;
   }
 
   // verify whether quote exists in your DB
@@ -15,7 +15,7 @@ const handlePost = async (req, res) => {
 
   if (!quote.id) {
     res.status(400).end(`Quote ${merchantReference} not found`);
-    break;
+    return;
   }
 
   const { result } = await latitudeService.verifyPurchase({
