@@ -1,3 +1,5 @@
+import cors from "../../../middlewares/cors";
+
 import * as quoteService from "../../../services/quote";
 import * as latitudeService from "../../../services/latitude";
 
@@ -59,5 +61,7 @@ const handlers = {
   default: handleDefault,
 };
 
-export default (req, res) =>
-  (handlers[req.method] || handlers.default)(req, res);
+export default async (req, res) => {
+  await cors(req, res);
+  return (handlers[req.method] || handlers.default)(req, res);
+};

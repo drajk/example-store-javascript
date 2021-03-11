@@ -3,7 +3,7 @@ import { Button, Header } from "semantic-ui-react";
 import axios from "axios";
 
 import { Customer, Cart, Layout } from "../components";
-import { LatitudeInterestFree } from "../payment";
+import { LatitudeInterestFree } from "../paymentMethods";
 import { PAYMENT_TYPE } from "../core/constants";
 
 import mockQuote from "../__mocks__/quote.json";

@@ -1,4 +1,4 @@
-export const MERCHANT_ID = "someMerchantID";
+export const MERCHANT_ID = process.env.LATITUDE_MERCHANT_ID;
 export const SCRIPT_IDENTIFIER = "latitudeCheckoutScript";
 
 export const LOGO_SRC =
