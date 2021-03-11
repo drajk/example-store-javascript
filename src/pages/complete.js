@@ -17,8 +17,6 @@ const CompletePage = () => {
   const router = useRouter();
   const [message, setMessage] = useState(null);
 
-  console.log({ data: router?.query });
-
   const {
     merchantReference = "",
     transactionReference = "",
