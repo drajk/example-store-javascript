@@ -1,7 +1,6 @@
-const MERCHANT_ID = process.env.LATITUDE_MERCHANT_ID;
-const IS_PRODUCTION = process.env.IS_PRODUCTION;
+import { MERCHANT_ID, IS_PRODUCTION } from "./common";
 
-const prepareRequest = (quote) => ({
+export default (quote) => ({
   merchantId: MERCHANT_ID,
   merchantName: "example-store-javascript",
   isTest: !Boolean(IS_PRODUCTION),
@@ -52,8 +51,6 @@ const prepareRequest = (quote) => ({
   totalShippingAmount: quote.shipping.amount,
   totalTaxAmount: quote.tax.amount,
   totalDiscountAmount: quote.discount.amount,
-  platformType: "custom",
+  platformType: "direct",
   platformVersion: "0.0.1",
 });
-
-export default prepareRequest;
