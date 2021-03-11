@@ -35,7 +35,7 @@ export default (quote) => ({
   },
   merchantUrls: {
     cancel: `${STORE_BASE_URL}/cart`,
-    complete: `${STORE_BASE_URL}/complete`,
+    complete: `${STORE_BASE_URL}/payment/latitude`,
   },
   orderLines: quote.lineItems.map((item) => ({
     name: item.title,

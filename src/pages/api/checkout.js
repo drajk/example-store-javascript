@@ -1,4 +1,3 @@
-import cors from "../../middlewares/cors";
 import { PAYMENT_TYPE } from "../../core/constants";
 import * as quoteService from "../../services/quote";
 import * as latitudeService from "../../services/latitude";
@@ -18,7 +17,7 @@ const handlePost = async (req, res) => {
     // Other payment methods here
 
     default:
-      res.status(403).end(`Payment method ${paymentType} not allowed`);
+      res.status(403).end(`Payment method ${paymentType} not supported`);
       break;
   }
 };
@@ -34,7 +33,5 @@ const handlers = {
   default: handleDefault,
 };
 
-export default async (req, res) => {
-  await cors(req, res);
-  return (handlers[req.method] || handlers.default)(req, res);
-};
+export default async (req, res) =>
+  (handlers[req.method] || handlers.default)(req, res);

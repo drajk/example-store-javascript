@@ -3,7 +3,8 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { Button, Container, Loader, Message, Icon } from "semantic-ui-react";
 
-import { Layout } from "../components";
+import { PAYMENT_TYPE } from "../../core/constants";
+import { Layout } from "../../components";
 
 const MESSAGES = {
   LOADING: "Please wait while we complete your order ..",
@@ -30,12 +31,11 @@ const CompletePage = () => {
       }
 
       try {
-        const { data } = await axios.get("/api/latitude/complete", {
-          params: {
-            merchantReference,
-            transactionReference,
-            gatewayReference,
-          },
+        const { data } = await axios.post("/api/payment", {
+          paymentType: PAYMENT_TYPE.LATITUDE_INTEREST_FREE,
+          merchantReference,
+          transactionReference,
+          gatewayReference,
         });
 
         const msg =
