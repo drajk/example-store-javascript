@@ -1,4 +1,4 @@
-import { MERCHANT_ID, IS_PRODUCTION } from "./common";
+import { STORE_BASE_URL, MERCHANT_ID, IS_PRODUCTION } from "./common";
 
 export default (quote) => ({
   merchantId: MERCHANT_ID,
@@ -34,8 +34,8 @@ export default (quote) => ({
     phone: quote.billing.phone,
   },
   merchantUrls: {
-    cancel: "http://austore.lmerchant.com/checkout/cart",
-    complete: "http://austore.lmerchant.com/payment/complete",
+    cancel: `${STORE_BASE_URL}/cart`,
+    complete: `${STORE_BASE_URL}/complete`,
   },
   orderLines: quote.lineItems.map((item) => ({
     name: item.title,

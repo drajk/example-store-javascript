@@ -1,63 +1,22 @@
-import { useState } from "react";
-import { Button, Header } from "semantic-ui-react";
-import axios from "axios";
+import { Button } from "semantic-ui-react";
+import { Layout } from "../components";
 
-import { Customer, Cart, Layout } from "../components";
-import { LatitudeInterestFree } from "../payment";
-import { PAYMENT_TYPE } from "../core/constants";
-
-import mockQuote from "../__mocks__/quote.json";
-
-const PayNow = ({ quoteId }) => {
-  const [loading, setLoading] = useState(false);
-
-  const handleClick = async () => {
-    setLoading(true);
-
-    const { data } = await axios.post("/api/checkout", {
-      quoteId,
-      paymentType: PAYMENT_TYPE.LATITUDE_INTEREST_FREE,
-    });
-
-    window.location.href = data?.redirectUrl;
-  };
-
-  return (
-    <Button secondary size="big" loading={loading} onClick={handleClick}>
-      Complete order
-    </Button>
-  );
-};
-
-const Home = () => {
-  // Currently uses a mock, ideally this method gets quote from your backend apis
-  const quote = mockQuote;
-
+const Complete = () => {
   return (
     <Layout>
-      <Layout.Summary>
-        <Cart
-          lineItems={quote?.lineItems}
-          shippingAmount={quote?.shipping?.amount}
-          totalAmount={quote?.total}
-        />
-      </Layout.Summary>
-
       <Layout.Content>
-        <Customer
-          customer={quote?.customer}
-          shipping={quote?.shipping}
-          billing={quote?.billing}
-        />
-
-        <Header>Payment</Header>
-
-        <LatitudeInterestFree />
-
-        <PayNow quoteId={quote?.id} />
+        <Button
+          basic
+          color="blue"
+          onClick={() => {
+            window.location.href = "/cart";
+          }}
+        >
+          Navigate to cart
+        </Button>
       </Layout.Content>
     </Layout>
   );
 };
 
-export default Home;
+export default Complete;
