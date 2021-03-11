@@ -1,22 +1,18 @@
-import { Button } from "semantic-ui-react";
+import { useEffect } from "react";
 import { Layout } from "../components";
 
-const Complete = () => {
+const HomePage = () => {
+  useEffect(() => {
+    window.location.href = "/cart";
+  });
+
   return (
     <Layout>
       <Layout.Content>
-        <Button
-          basic
-          color="blue"
-          onClick={() => {
-            window.location.href = "/cart";
-          }}
-        >
-          Navigate to cart
-        </Button>
+        <p>Loading...</p>
       </Layout.Content>
     </Layout>
   );
 };
 
-export default Complete;
+export default HomePage;

@@ -1,9 +1,9 @@
 import * as quoteService from "../../../services/quote";
 import * as latitudeService from "../../../services/latitude";
 
-const handlePost = async (req, res) => {
+const handleGet = async (req, res) => {
   const { merchantReference, transactionReference, gatewayReference } =
-    req?.body || {};
+    req?.query || {};
 
   if (!merchantReference || !transactionReference || !gatewayReference) {
     res.status(400).end("Missing required params");
@@ -24,20 +24,28 @@ const handlePost = async (req, res) => {
     gatewayReference,
   });
 
-  // mark order as paid when result = "completed"
-  if (result === "completed") {
-    const { orderId } = quoteService.markAsPaid({
-      quoteId: merchantReference,
-      transactionReference,
-      gatewayReference,
-    });
+  switch (result) {
+    // handle successfull payments
+    case "completed":
+      // mark order as paid
+      const { orderId } = quoteService.markAsPaid({
+        quoteId: merchantReference,
+        transactionReference,
+        gatewayReference,
+      });
+      res.status(200).json({ result, orderId });
+      break;
 
-    res.status(200).json({ orderId });
-    return;
+    // handle failed payments
+    case "failed":
+      res.status(200).json({ result });
+      break;
+
+    // handle other exceptions
+    default:
+      res.status(400).end(`Could not complete quote ${merchantReference}`);
+      break;
   }
-
-  // handle result = "failed" and other exceptions
-  res.status(400).end(`Could not complete quote ${merchantReference}`);
 };
 
 const handleDefault = (req, res) => {
@@ -47,7 +55,7 @@ const handleDefault = (req, res) => {
 };
 
 const handlers = {
-  POST: handlePost,
+  GET: handleGet,
   default: handleDefault,
 };
 

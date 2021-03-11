@@ -29,7 +29,7 @@ const PayNow = ({ quoteId }) => {
   );
 };
 
-const Home = () => {
+const CartPage = () => {
   // Currently uses a mock, ideally this method gets quote from your backend apis
   const quote = mockQuote;
 
@@ -60,4 +60,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default CartPage;
