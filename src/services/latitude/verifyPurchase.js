@@ -8,18 +8,18 @@ const ERROR_RESPONSE = {
 /**
  * Verifies purchase request with Latitude Interest free
  * @param {string} merchantReference
- * @param {string} transactionRefeference
+ * @param {string} transactionReference
  * @param {string} gatewayReference
  */
 export const verifyPurchase = async ({
   merchantReference = "",
-  transactionRefeference = "",
+  transactionReference = "",
   gatewayReference = "",
 }) => {
   try {
     const data = {
       merchantReference,
-      transactionRefeference,
+      transactionReference,
       gatewayReference,
     };
 
