@@ -23,7 +23,7 @@ export const verifyPurchase = async ({
       gatewayReference,
     };
 
-    const response = await axios.get(
+    const response = await axios.post(
       ENDPOINTS.VERIFY_PURCHASE,
       data,
       AXIOS_CONFIG
