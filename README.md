@@ -1,7 +1,7 @@
 
 ## Example Store - Javascript
 
-Demo store or Latitude Checkout - Direct Intgration
+Demo store for Latitude Checkout - Direct Intgration
 
 This project is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
